@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+import { withBase, absUrl, SITE_NAME } from '../lib/url';
+interface Props { title: string; description: string; path: string; jsonLd?: object[]; }
+const { title, description, path, jsonLd = [] } = Astro.props;
+const canonical = absUrl(path, Astro.site);
+const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <link rel="icon" type="image/svg+xml" href={withBase('favicon.svg')} />
+    <link rel="sitemap" href={withBase('sitemap.xml')} />
+    {jsonLd.map((o) => <script type="application/ld+json" set:html={JSON.stringify(o)} />)}
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header"><div class="wrap">
+      <a class="brand" href={withBase('')}>Micro SaaS Lab</a>
+      <nav aria-label="Main">
+        <a href={withBase('how-it-works/')}>How it works</a>
+        <a href={withBase('faq/')}>FAQ</a>
+        <a href={withBase('about/')}>About</a>
+        <a class="cta" href={withBase('#waitlist')}>Join the waitlist</a>
+      </nav>
+    </div></header>
+    <main id="main"><slot /></main>
+    <footer class="site-footer"><div class="wrap">
+      <p>Micro SaaS Lab is a validation project. The quote tool described here is in development and not yet available.</p>
+      <ul>
+        <li><a href={withBase('about/')}>About</a></li>
+        <li><a href={withBase('privacy/')}>Privacy</a></li>
+        <li><a href={withBase('disclosure/')}>Disclosure</a></li>
+        <li><a href={withBase('sitemap.xml')}>Sitemap</a></li>
+      </ul>
+    </div></footer>
+  </body>
+</html>

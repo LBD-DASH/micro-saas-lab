@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import Waitlist from '../components/Waitlist.astro';
+import { withBase } from '../lib/url';
+---
+<Base title="Quote drafts for small service businesses" description="A small AI tool in development that turns a job description or enquiry into a clean, itemised quote draft you review and send yourself." path="">
+  <section class="hero"><div class="wrap">
+    <p class="status">In development. Not yet available.</p>
+    <h1>Turn an enquiry into a clean quote draft.</h1>
+    <p class="lead">We are validating a small AI tool that reads a job description or customer enquiry and drafts an itemised quote. You review it, change it and send it yourself.</p>
+    <p><a class="btn" href="#waitlist">Join the waitlist</a> <a class="btn alt" href={withBase('how-it-works/')}>See how it would work</a></p>
+  </div></section>
+
+  <section class="wrap block">
+    <h2>The problem</h2>
+    <p>Small service businesses often write quotes by hand, after a long day, from a rough message or a phone note. It is repetitive, and a slow reply can mean a customer asks someone else. We want to find out whether this is a real enough pain to build for, so we are asking before we build.</p>
+  </section>
+
+  <section class="wrap block">
+    <h2>How it would work</h2>
+    <ol>
+      <li>Paste or forward the job description or enquiry.</li>
+      <li>The tool drafts an itemised quote: line items, quantities and a short scope note, using details you give it.</li>
+      <li>You check and edit every line, then send it yourself.</li>
+    </ol>
+    <p>It would never send anything on its own. <a href={withBase('how-it-works/')}>More detail</a>.</p>
+  </section>
+
+  <section class="wrap block">
+    <h2>Who it is for</h2>
+    <p>Owner-run service businesses that quote for jobs, such as trades, cleaners, landscapers, photographers and similar. If you quote for work and want to try a draft-first approach, this is for you.</p>
+  </section>
+
+  <section class="wrap block">
+    <h2>Honest status</h2>
+    <p>This tool does not exist yet. There is no product to sign up for, no pricing and no payment. Joining the waitlist only tells us there is interest and helps us decide what to build. Read the <a href={withBase('faq/')}>FAQ</a>.</p>
+  </section>
+
+  <section class="wrap block"><Waitlist /></section>
+</Base>
