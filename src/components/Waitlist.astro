@@ -1,0 +1,19 @@
+---
+// The form endpoint is a pending decision for Kevin (see STATUS.md).
+// Until one is chosen the form is shown but cannot be submitted, and nothing is collected.
+const endpoint = ''; // set to a real endpoint URL to enable
+const enabled = endpoint !== '';
+---
+<form id="waitlist" class="waitlist" method="post" action={enabled ? endpoint : undefined} aria-describedby="wl-note">
+  <h2>Join the waitlist</h2>
+  <label>Your name<input type="text" name="name" autocomplete="name" /></label>
+  <label>Email<input type="email" name="email" autocomplete="email" required /></label>
+  <label>Type of business (for example plumbing, landscaping, cleaning)<input type="text" name="business" /></label>
+  <label>How do you write quotes today?<textarea name="current_process" rows="3"></textarea></label>
+  <button type="submit" disabled={!enabled}>Request early access</button>
+  <p id="wl-note" class="note">
+    {enabled
+      ? 'We only use your details to tell you about this tool. No payment is taken.'
+      : 'The waitlist form is not switched on yet, so nothing can be submitted and nothing is collected. Please check back soon.'}
+  </p>
+</form>
